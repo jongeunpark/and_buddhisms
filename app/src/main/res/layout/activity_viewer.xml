@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/viewer_adFragment"
+        class="com.jp.buddhisms.fragments.AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/viewer_adFragment"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_actionbar" />
+
+        <FrameLayout
+            android:id="@+id/viewer_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+
+            <com.github.ksoichiro.android.observablescrollview.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/viewer_scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/viewer_text_contents"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+
+                    android:padding="12dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="16dp" />
+            </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

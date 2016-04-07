@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#009688</color>
+    <color name="primary_dark">#00796B</color>
+    <color name="primary_light">#B2DFDB</color>
+    <color name="accent">#7C4DFF</color>
+    <color name="primary_text">#B2DFDB</color>
+    <color name="secondary_text">#212121</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="background_dark">#f8f8f8</color>
+
+    <color name="my_editbackground_color">#FFFFFF</color>
+
+    <color name="my_statusbar_color">#F5F5F5</color>
+    <color name="my_background_color">#F5F5F5</color>
+    <color name="my_navi_color">#F5F5F5</color>
+    <color name="my_navi_text_color">#363B38</color>
+    <color name="my_text_color">#000000</color>
+    <color name="my_text_color_blue">#2879D9</color>
+    <color name="my_text_color_white">#ffffff</color>
+
+
+    <color name="my_text_click_color">#4A90E2</color>
+    <color name="btn_dis">#2879D9</color>
+    <color name="btn_enable">#2879D9</color>
+    <color name="btn_enable_red">#D30000</color>
+    <color name="btn_text_dis">#FFFFFF</color>
+    <color name="btn_text_enable">#FFFFFF</color>
+    <color name="tab_indicator_color">#072F5D</color>
+
+
+</resources>

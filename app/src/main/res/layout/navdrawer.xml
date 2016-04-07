@@ -1,0 +1,225 @@
+<com.jp.buddhisms.views.widgets.ScrimInsetsCustomFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navdrawer"
+    android:layout_width="@dimen/navdrawer_width"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/my_navi_color"
+    android:clickable="true"
+    android:elevation="10dp"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:weightSum="1"
+    app:insetForeground="#4000">
+
+    <ScrollView
+        android:id="@+id/navDrawerScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/navDrawerLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <!--  Image Header  -->
+            <LinearLayout
+                android:id="@+id/ltDrawerHeader"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:background="@drawable/img_navdrawerheader"
+                android:gravity="left|bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/navi_text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:adjustViewBounds="true"
+                    android:fontFamily="sans-serif"
+                    android:gravity="bottom"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/img_navdrawerheader"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp" />
+                <!--  Slogan  -->
+                <TextView
+                    android:id="@+id/navi_text_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="16dp"
+                    android:textColor="#E9E9E9"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="#888" />
+            <!--  Button  -->
+            <LinearLayout
+                android:id="@+id/txtNavButtonBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/navi_btn_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_navi_share" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/share"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/navi_btn_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_navi_review" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/comment"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/navi_btn_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_navi_sent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/email"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/navi_btn_download"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_navi_download" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/other"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/navi_btn_bitcoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_navi_bitcoin" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="@string/donation"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</com.jp.buddhisms.views.widgets.ScrimInsetsCustomFrameLayout>
