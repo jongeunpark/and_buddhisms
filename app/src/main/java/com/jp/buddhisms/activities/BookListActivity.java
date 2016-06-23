@@ -40,6 +40,10 @@ import android.widget.TextView;
 
 public class BookListActivity extends BaseActivity implements
 		ObservableScrollViewCallbacks {
+
+	public static final String BOOK_POSITION = "BOOK_POSITION";
+	private int RESULT_VIEWERACTIVITY = 101;
+
 	private ObservableListView mListView;
 	private String mTitle;
 	private String[] mNames;
@@ -143,7 +147,10 @@ public class BookListActivity extends BaseActivity implements
 				intent.putExtra(MainFragment.BOOK_KO,
 						jsonBook.getString("text"));
 				intent.putExtra(MainFragment.ISTEXT, true);
-				startActivity(intent);
+				intent.putExtra(MainFragment.IS_SCROLL, true);
+				intent.putExtra(MainFragment.CURRENT_PAGE, position);
+				intent.putExtra(MainFragment.MAX_PAGE, mNames.length);
+				startActivityForResult(intent,RESULT_VIEWERACTIVITY);
 				ActivityAnimator.fadeAnimation(this);
 
 			} catch (JSONException e) {
@@ -162,7 +169,10 @@ public class BookListActivity extends BaseActivity implements
 
 				intent.putExtra(MainFragment.BOOK_DE, jsonBook);
 				intent.putExtra(MainFragment.ISTEXT, true);
-				startActivity(intent);
+				intent.putExtra(MainFragment.IS_SCROLL, true);
+				intent.putExtra(MainFragment.CURRENT_PAGE, position);
+				intent.putExtra(MainFragment.MAX_PAGE, mNames.length);
+				startActivityForResult(intent,RESULT_VIEWERACTIVITY);
 				ActivityAnimator.fadeAnimation(this);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -180,7 +190,10 @@ public class BookListActivity extends BaseActivity implements
 
 				intent.putExtra(MainFragment.BOOK_DE, jsonBook);
 				intent.putExtra(MainFragment.ISTEXT, true);
-				startActivity(intent);
+				intent.putExtra(MainFragment.IS_SCROLL, true);
+				intent.putExtra(MainFragment.CURRENT_PAGE, position);
+				intent.putExtra(MainFragment.MAX_PAGE, mNames.length);
+				startActivityForResult(intent,RESULT_VIEWERACTIVITY);
 				ActivityAnimator.fadeAnimation(this);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -256,6 +269,17 @@ public class BookListActivity extends BaseActivity implements
 		}
 
 		return text.toString();
+	}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if (requestCode == RESULT_VIEWERACTIVITY) {
+			if(resultCode == RESULT_OK){
+				if(intent!=null ){
+					int postion = intent.getIntExtra(BOOK_POSITION,0);
+					openBook(postion);
+				}
+			}
+		}
 	}
 
 	@Override

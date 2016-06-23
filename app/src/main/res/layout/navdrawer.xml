@@ -70,9 +70,62 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/navi_btn_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="불교의식"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/navi_btn_life"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="72dp"
+                        android:editable="false"
+                        android:elegantTextHeight="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:text="불교생활"
+                        android:textColor="@color/my_navi_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#888" />
+                <RelativeLayout
                     android:id="@+id/navi_btn_share"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
 
@@ -95,6 +148,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="true"
                         android:text="@string/share"
+                        android:alpha="0.6"
                         android:textColor="@color/my_navi_text_color"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -125,6 +179,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="true"
                         android:text="@string/comment"
+                        android:alpha="0.6"
                         android:textColor="@color/my_navi_text_color"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -153,6 +208,7 @@
                         android:editable="false"
                         android:elegantTextHeight="false"
                         android:focusable="false"
+                        android:alpha="0.6"
                         android:focusableInTouchMode="true"
                         android:text="@string/email"
                         android:textColor="@color/my_navi_text_color"
@@ -185,6 +241,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="true"
                         android:text="@string/other"
+                        android:alpha="0.6"
                         android:textColor="@color/my_navi_text_color"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -215,6 +272,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="true"
                         android:text="@string/donation"
+                        android:alpha="0.6"
                         android:textColor="@color/my_navi_text_color"
                         android:textStyle="bold" />
                 </RelativeLayout>

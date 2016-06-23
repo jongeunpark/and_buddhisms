@@ -32,6 +32,13 @@ public class MainFragment extends Fragment {
 	public static final String ISTEXT = "ISTEXT";
 	public static final String BOOKLIST = "BOOKLIST";
 	public static final String BOOKTYPE = "BOOKTYPE";
+	public static final String IS_SCROLL = "IS_SCROLL";
+	public static final String CURRENT_PAGE = "CURRENT_PAGE";
+	public static final String MAX_PAGE = "MAX_PAGE";
+
+
+
+
 	private List<BookData> mBookData;
 	private ListView mListView;
 	private BooklistAdapter mAdapter;
@@ -171,6 +178,7 @@ public class MainFragment extends Fragment {
 
 			listinfo.add(hm);
 		}
+
 		String[] from = { "name" };
 		int[] to = { R.id.row_listview_text_title };
 		mAdapter = new BooklistAdapter(getActivity().getBaseContext(),
