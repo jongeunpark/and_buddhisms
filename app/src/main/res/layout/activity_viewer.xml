@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <fragment
         android:id="@+id/viewer_adFragment"
@@ -13,12 +14,12 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+
         android:layout_above="@id/viewer_adFragment"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="16dp"
+
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_actionbar" />
 
         <RelativeLayout
             android:id="@+id/viewer_container"
@@ -28,54 +29,169 @@
             android:background="#ffffff"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+
                 android:id="@+id/viewer_view_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:minHeight="0dp">
 
-                android:background="#f8f8f8"
-                android:visibility="gone">
+                <RelativeLayout
 
-                <TextView
-                    android:id="@+id/viewer_btn_prev"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center"
-                    android:text="이전"
-                    android:textColor="@color/primary"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-                <TextView
-                    android:id="@+id/viewer_btn_next"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:text="다음"
-                    android:textColor="@color/primary"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                    android:minHeight="0dp"
+
+                    >
+                    <RelativeLayout
+                        android:id="@+id/viewer_btn_prev"
+                        android:layout_width="130dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_height="50dp"
+                        >
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:alpha="0.8"
+                            android:layout_alignParentLeft="true"
+                            android:src="@drawable/left"/>
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="40dp"
+                            android:gravity="center"
+                            android:text="이전"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/viewer_btn_next"
+                        android:layout_width="130dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                       >
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="16dp"
+                            android:alpha="0.8"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/right"/>
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="40dp"
+                            android:gravity="center"
+                            android:text="다음"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/primary_text"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:layout_above="@id/viewer_view_bottom"
                 android:fillViewport="true">
 
-                <TextView
-                    android:id="@+id/viewer_text_contents"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                <android.support.v7.widget.CardView
 
-                    android:padding="4dp"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="16dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/viewer_text_contents"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+
+                        android:padding="8dp"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp" />
+                </android.support.v7.widget.CardView>
+
+
             </ScrollView>
 
+            <com.github.clans.fab.FloatingActionMenu xmlns:fab="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/viewer_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_above="@id/viewer_view_bottom"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:alpha="0.7"
+                fab:fab_colorNormal="@color/accent"
+                fab:fab_colorPressed="@color/accent"
+                fab:fab_colorRipple="@color/accent">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_menu_size_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/size_up"
+
+                    fab:fab_label="@string/menu_text_size_up" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_menu_size_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/size_down"
+                    fab:fab_label="@string/menu_text_size_down" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_menu_show_han"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/menu_han"
+                    fab:fab_label="@string/menu_text_show_han" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_menu_show_moon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/menu_moon"
+                    fab:fab_label="@string/menu_text_show_moon" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_menu_show_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/menu_desc"
+                    fab:fab_label="@string/menu_text_show_desc" />
+            </com.github.clans.fab.FloatingActionMenu>
 
         </RelativeLayout>
     </LinearLayout>

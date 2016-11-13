@@ -1,11 +1,11 @@
 package com.jp.buddhisms;
 
-import java.util.HashMap;
-
 import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+
+import java.util.HashMap;
 
 public class MYJPAPP extends Application {
 

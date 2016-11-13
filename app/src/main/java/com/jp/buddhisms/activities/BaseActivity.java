@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
+
 import com.jp.buddhisms.R;
 
 /**
@@ -17,9 +18,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            initStatusbar();
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            initStatusbar();
+//        }
     }
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initStatusbar(){

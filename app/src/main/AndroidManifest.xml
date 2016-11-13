@@ -23,7 +23,7 @@
         <activity
             android:name=".activities.MainActivity"
 
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar">
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,6 +60,9 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="f10fc382e04265963b4775a151e677abaae7147e" />
     </application>
 
 </manifest>

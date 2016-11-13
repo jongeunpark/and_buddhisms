@@ -3,18 +3,30 @@
     <string name="banner_ad_unit_id">ca-app-pub-6722966527757194/7984855063</string>
     <string name="app_name">불경소리</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="powered">Powered by JP</string>
+
     <string name="share">공유하기</string>
     <string name="comment">리뷰남기기</string>
     <string name="email">문의하기</string>
-    <string name="other">개발자의 다른 앱</string>
-    <string name="donation">기부하기</string>
-    <string name="money">광고 없는 유료 앱</string>
-    <string name="donation_copy">주소 복사</string>
-    <string name="donation_execute">비트코인 지갑 실행</string>
-    <string name="donation_copies">비트코인 주소가 복사되었습니다.</string>
+
+    <string name="etc">불교 이야기</string>
+    <string name="etc_info">불교의식</string>
+    <string name="etc_lift">불교생활</string>
+
+    <string name="type_text_han">한글</string>
+    <string name="type_text_moon">한문</string>
+    <string name="type_text_desc">풀이</string>
+
+    <string name="menu_text_size_up">글자 크게</string>
+    <string name="menu_text_size_down">글자 작게</string>
+    <string name="menu_text_show_han">한글 보기</string>
+    <string name="menu_text_show_moon">한문 보기</string>
+    <string name="menu_text_show_desc">풀이 보기</string>
 
 
-    <string name="powered">Powered by JP</string>
+
     <string name="info1">재(齋)의 원래의 의미는 고대 인도의 철학서인 우파니샤드(Upanisad)에서 유래하는 것으로 재가자가 언행을 조심하고 재계를 잘 지키고 신심을 청정히 하여 지극한 마음으로 부처님과 스님께 공양을 올리는 것을 말한다. 이것이 후일 크게 법회의식으로 확대되어 호국법회에서부터 수륙재(水陸齋), 영산재(靈山齋) 등과 같은 죽은 사람이나 산 사람을 위해 베풀어지는 일체의 모든 법회를 총칭하는 말을 의미하는 것이다.</string>
     <string name="info2">부처님은 사람이 태어나고 병들고 늙고 죽는 사실을 주목하며 사는 것 자체가‘고통〔苦〕’이라고 하셨다.
 사는 것 자체가 고통이니 만큼 그 고통에서 표면적으로 벗어나는 방법은 사실상 죽음으로 모든 종교에서는 사후세계를 다루게 된다. 흔히 서양의 기독교를 포함한 종교에서는 사후세계를 천국과 지옥의 세계관으로 이야기하는 것과 마찬가지로 불교에서도 역시 죽은 자의 영혼이 가야할 곳에 대해 주목한다.\n\n죽은 자의 영혼이 평온한 다음 세계로 안전하게 정착하길 바라는 마음에서 기원하는 것이 천도재(薦度齋)로 죽음과 관련된 불교의례를 통칭하기도 한다. 천도재의 천(薦)은 천거함을 의미하고 도(度)는 죽은 영혼이 내생(來生)의 좋은 곳에 다시 태어나는 길을 안내하고 그 방법을 가르쳐 주며 이끌어 줌을 뜻하여 천도란 망자의 영혼을 구제하여 좋은 곳으로 보낸다는 의미이다. 천도재는 이처럼 의미가 넓은 불교의식으로서 사십구재, 수륙재, 영산재 등이 모두 이에 속하는 것이다.\n\n죽은 자의 영혼이 평온한 다음 세계로 안전하게 정착하길 바라는 마음에서 기원하는 것이 천도재(薦度齋)로 죽음과 관련된 불교의례를 통칭하기도 한다. 천도재의 천(薦)은 천거함을 의미하고 도(度)는 죽은 영혼이 내생(來生)의 좋은 곳에 다시 태어나는 길을 안내하고 그 방법을 가르쳐 주며 이끌어 줌을 뜻하여 천도란 망자의 영혼을 구제하여 좋은 곳으로 보낸다는 의미이다. 천도재는 이처럼 의미가 넓은 불교의식으로서 사십구재, 수륙재, 영산재 등이 모두 이에 속하는 것이다.\n\n천도재의 대상이 되는 영가(靈駕)는 망자의 영혼은 없어지지 않고 그대로 남아 업(業)에 따라 이 몸에서 저 몸으로 몸만 바꾸어 환생하면서 끝없이 윤회하는데 이 영혼을 하나의 개체라고 인정하여 불가(佛家)에서 부르는 것이다. 그래서 흔히 ‘영가천도(靈駕薦度)’라고 하는 것이다. 천도재는 진언(眞言)으로 영가를 불러 이승의 미련이나 집착을 끊어 버리라는 내용인 법문(法門)을 들려주고 살아남은 자들의 정성과 선신(善神)의 위신력과 부처님의 가피력으로 왕색극락(往生極樂)토록 안내하고 기원하게 된다. 의식절차에 따라 상주권공재(常住勸供齋)와 각배재(各拜齋)·영산재(靈山齋) 등으로 나뉘는데, 이 중 사십구재로 통용되는 상주권공재가 가장 기본적인 의식이며, 여기에 명부신앙(冥府信仰)에 대한 의례를 더한 것이 각배재이고 영산재는 영산회상의 법회를 상징화하여 행하는 재이다.</string>

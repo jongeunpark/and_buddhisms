@@ -1,5 +1,7 @@
 package com.jp.buddhisms.utils.animations;
+
 import android.app.Activity;
+
 import com.jp.buddhisms.R;
 /**
  * Created by jp on 16. 4. 7..

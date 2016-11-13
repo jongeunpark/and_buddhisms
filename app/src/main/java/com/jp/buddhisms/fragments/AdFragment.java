@@ -1,16 +1,14 @@
 package com.jp.buddhisms.fragments;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.jp.buddhisms.R;
-
-
 import android.app.Fragment;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.jp.buddhisms.R;
 
 public class AdFragment extends Fragment {
 	private AdView mAdView;

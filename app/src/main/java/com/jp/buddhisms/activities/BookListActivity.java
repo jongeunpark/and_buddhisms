@@ -1,56 +1,46 @@
 package com.jp.buddhisms.activities;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.github.ksoichiro.android.observablescrollview.ObservableListView;
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
-import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.jp.buddhisms.MYJPAPP;
 import com.jp.buddhisms.MYJPAPP.TrackerName;
-import com.jp.buddhisms.fragments.MainFragment;
 import com.jp.buddhisms.R;
 import com.jp.buddhisms.data.BookData;
+import com.jp.buddhisms.fragments.MainFragment;
 import com.jp.buddhisms.utils.animations.ActivityAnimator;
 import com.jp.buddhisms.views.adapters.BooklistAdapter;
 
-import android.app.ActionBar;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class BookListActivity extends BaseActivity implements
-		ObservableScrollViewCallbacks {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class BookListActivity extends BaseActivity {
 
 	public static final String BOOK_POSITION = "BOOK_POSITION";
 	private int RESULT_VIEWERACTIVITY = 101;
 
-	private ObservableListView mListView;
+
 	private String mTitle;
 	private String[] mNames;
 	private BooklistAdapter mAdapter;
-	private List<BookData> mBookData;
+	private ArrayList<BookData> mBookDatas;
 	private int mBookType;
 	private int mBooklist;
+	private RecyclerView.LayoutManager mLayoutManager;
+
+	private RecyclerView mRecyclerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +50,7 @@ public class BookListActivity extends BaseActivity implements
 		initData();
 		initActionbar();
 		initView();
-		initEvent();
+
 		setData();
 
 	}
@@ -88,7 +78,7 @@ public class BookListActivity extends BaseActivity implements
 	}
 
 	private void initData() {
-		mBookData = new LinkedList<BookData>();
+		mBookDatas = new ArrayList<BookData>();
 		mBookType = getIntent().getIntExtra(MainFragment.BOOKTYPE, 0);
 		mBooklist = getIntent().getIntExtra(MainFragment.BOOKLIST, 0);
 		mTitle = getIntent().getStringExtra(MainFragment.TITLE);
@@ -97,12 +87,10 @@ public class BookListActivity extends BaseActivity implements
 
 	private void initActionbar() {
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-		toolbar.setTitle(getIntent().getStringExtra(MainFragment.TITLE));
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setTitle(getIntent().getStringExtra(MainFragment.TITLE));
 
 
 
@@ -110,23 +98,16 @@ public class BookListActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		mRecyclerView =  (RecyclerView) findViewById(R.id.booklist_recycler_book);
+		mRecyclerView.setHasFixedSize(true);
 
-		mListView = (ObservableListView) findViewById(R.id.booklist_list_book);
-		mListView.setScrollViewCallbacks(this);
+		// use a linear layout manager
+		mLayoutManager = new LinearLayoutManager(this);
+		mRecyclerView.setLayoutManager(mLayoutManager);
+
 	}
 
-	private void initEvent() {
 
-		mListView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				openBook(position);
-			}
-		});
-	}
 
 	private void openBook(int position) {
 		boolean bottomUp = true;
@@ -208,21 +189,23 @@ public class BookListActivity extends BaseActivity implements
 
 		mNames = getResources().getStringArray(mBooklist);
 
-		List<HashMap<String, String>> listinfo = new ArrayList<HashMap<String, String>>();
-		listinfo.clear();
+
 		for (int i = 0; i < mNames.length; i++) {
-			HashMap<String, String> hm = new HashMap<String, String>();
-			hm.put("name", mNames[i]);
-			mBookData.add(new BookData(mNames[i], getIntent().getIntExtra(
+
+			mBookDatas.add(new BookData(mNames[i], getIntent().getIntExtra(
 					MainFragment.BOOKTYPE, 0)));
-			listinfo.add(hm);
+
 		}
 
-		String[] from = { "name" };
-		int[] to = { R.id.row_listview_text_title };
-		mAdapter = new BooklistAdapter(getBaseContext(), listinfo,
-				R.layout.row_booklist, from, to, mBookData);
-		mListView.setAdapter(mAdapter);
+
+		mAdapter = new BooklistAdapter(this, mBookDatas);
+		mRecyclerView.setAdapter(mAdapter);
+		mAdapter.setOnItemClickListener(new BooklistAdapter.OnItemClickListener() {
+			@Override
+			public void onItemClick(int position) {
+				openBook(position);
+			}
+		});
 
 	}
 
@@ -282,23 +265,6 @@ public class BookListActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
-	public void onScrollChanged(int scrollY, boolean firstScroll,
-			boolean dragging) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void onDownMotionEvent() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

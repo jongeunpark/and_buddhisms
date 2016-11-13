@@ -1,9 +1,13 @@
 package com.jp.buddhisms.fragments;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.jp.buddhisms.R;
 import com.jp.buddhisms.activities.BookListActivity;
@@ -12,15 +16,8 @@ import com.jp.buddhisms.data.BookData;
 import com.jp.buddhisms.utils.animations.ActivityAnimator;
 import com.jp.buddhisms.views.adapters.BooklistAdapter;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainFragment extends Fragment {
 
@@ -39,11 +36,16 @@ public class MainFragment extends Fragment {
 
 
 
-	private List<BookData> mBookData;
-	private ListView mListView;
+	private ArrayList<BookData> mBookDatas;
+	private RecyclerView.LayoutManager mLayoutManager;
+
+	private RecyclerView mRecyclerView;
 	private BooklistAdapter mAdapter;
 	private String[] mNames;
 
+	public static MainFragment newInstance() {
+		return new MainFragment();
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,35 +54,29 @@ public class MainFragment extends Fragment {
 				false);
 		initData();
 		initView(rootView);
-		initEvent();
+
 		setData();
 		return rootView;
 
 	}
 
 	private void initData() {
-		mBookData = new LinkedList<BookData>();
+		mBookDatas = new ArrayList<BookData>();
 	}
 
 	private void initView(View rootView) {
-		mListView = (ListView) rootView.findViewById(R.id.main_list_book);
+		mRecyclerView =  (RecyclerView) rootView.findViewById(R.id.main_recycler_book);
+		mRecyclerView.setHasFixedSize(true);
+
+		// use a linear layout manager
+		mLayoutManager = new LinearLayoutManager(getActivity());
+		mRecyclerView.setLayoutManager(mLayoutManager);
 	}
 
-	private void initEvent() {
-		mListView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				openBook(position);
-			}
-		});
-	}
 
 	private void openBook(int position) {
 		boolean bottomUp = true;
-		BookData item = mBookData.get(position);
+		BookData item = mBookDatas.get(position);
 		
 		Intent intent = new Intent();
 
@@ -118,72 +114,76 @@ public class MainFragment extends Fragment {
 	private void setData() {
 		mNames = getResources().getStringArray(R.array.list_book);
 
-		List<HashMap<String, String>> listinfo = new ArrayList<HashMap<String, String>>();
-		listinfo.clear();
+
 		for (int i = 0; i < mNames.length; i++) {
 			HashMap<String, String> hm = new HashMap<String, String>();
 			hm.put("name", mNames[i]);
 			if (mNames[i].equals("반야심경")) {
-				mBookData.add(new BookData(mNames[i], 7, R.raw.ban_ko,
+				mBookDatas.add(new BookData(mNames[i], 7, R.raw.ban_ko,
 						R.raw.ban, R.raw.ban_de));
 			} else if (mNames[i].equals("화엄경 약찬게")) {
-				mBookData.add(new BookData(mNames[i], 3, R.raw.yackchun_ko,
+				mBookDatas.add(new BookData(mNames[i], 3, R.raw.yackchun_ko,
 						R.raw.yackchun));
 
 			} else if (mNames[i].equals("천수경")) {
-				mBookData.add(new BookData(mNames[i], 3, R.raw.chun_ko,
+				mBookDatas.add(new BookData(mNames[i], 3, R.raw.chun_ko,
 						R.raw.chun));
 
 			}  else if (mNames[i].equals("법성게")) {
-				mBookData.add(new BookData(mNames[i], 7, R.raw.bubsung_ko,
+				mBookDatas.add(new BookData(mNames[i], 7, R.raw.bubsung_ko,
 						R.raw.bubsung, R.raw.bubsung_de));
 
 			} else if (mNames[i].equals("신묘장구대다라니")) {
-				mBookData.add(new BookData(mNames[i], 1, R.raw.sinmyo_ko));
+				mBookDatas.add(new BookData(mNames[i], 1, R.raw.sinmyo_ko));
 
 			} else if (mNames[i].equals("금강경")) {
 
-				mBookData.add(new BookData(mNames[i], 3));
+				mBookDatas.add(new BookData(mNames[i], 3));
 
 			} else if (mNames[i].equals("아미타경")) {
-				mBookData.add(new BookData(mNames[i], 3, R.raw.ami_ko,
+				mBookDatas.add(new BookData(mNames[i], 3, R.raw.ami_ko,
 						R.raw.ami));
 
 			} else if (mNames[i].equals("천지팔양신주경")) {
 
-				mBookData.add(new BookData(mNames[i], 3, R.raw.chunji_ko,
+				mBookDatas.add(new BookData(mNames[i], 3, R.raw.chunji_ko,
 						R.raw.chunji));
 			} else if (mNames[i].equals("대불정능엄신주")) {
-				mBookData.add(new BookData(mNames[i], 1, R.raw.debulneungum_ko));
+				mBookDatas.add(new BookData(mNames[i], 1, R.raw.debulneungum_ko));
 
 			} else if (mNames[i].equals("백팔대참회문")) {
 
-				mBookData.add(new BookData(mNames[i], 4, R.raw.backpal_de,
+				mBookDatas.add(new BookData(mNames[i], 4, R.raw.backpal_de,
 						R.raw.backpal_de, R.raw.backpal_de));
 			} else if (mNames[i].equals("지장경")) {
 
-				mBookData.add(new BookData(mNames[i], 4, R.raw.jijang_de,
+				mBookDatas.add(new BookData(mNames[i], 4, R.raw.jijang_de,
 						R.raw.jijang_de, R.raw.jijang_de));
 			} else if (mNames[i].equals("천수천안관세음보살광대원만무애대비심대다라니경")) {
 
-				mBookData.add(new BookData(mNames[i], 4,
+				mBookDatas.add(new BookData(mNames[i], 4,
 						R.raw.chunsoochunan_de, R.raw.chunsoochunan_de,
 						R.raw.chunsoochunan_de));
 			} else if (mNames[i].equals("능엄경")) {
 
-				mBookData.add(new BookData(mNames[i], 4,
+				mBookDatas.add(new BookData(mNames[i], 4,
 						R.raw.chunsoochunan_de, R.raw.chunsoochunan_de,
 						R.raw.chunsoochunan_de));
 			}
 
-			listinfo.add(hm);
+
 		}
 
-		String[] from = { "name" };
-		int[] to = { R.id.row_listview_text_title };
-		mAdapter = new BooklistAdapter(getActivity().getBaseContext(),
-				listinfo, R.layout.row_booklist, from, to, mBookData);
-		mListView.setAdapter(mAdapter);
+
+		mAdapter = new BooklistAdapter(getActivity(),
+				mBookDatas);
+		mRecyclerView.setAdapter(mAdapter);
+		mAdapter.setOnItemClickListener(new BooklistAdapter.OnItemClickListener() {
+			@Override
+			public void onItemClick(int position) {
+				openBook(position);
+			}
+		});
 	}
 
 }
