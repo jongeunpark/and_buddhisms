@@ -4,14 +4,9 @@
     android:layout_height="fill_parent"
     android:background="@color/background"
     android:orientation="vertical">
-    <fragment
-        android:id="@+id/main_adFragment"
-        class="com.jp.buddhisms.fragments.AdFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+
     <android.support.v7.widget.RecyclerView
-        android:layout_above="@id/main_adFragment"
+
         android:id="@+id/main_recycler_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

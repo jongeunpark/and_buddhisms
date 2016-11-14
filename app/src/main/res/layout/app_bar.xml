@@ -18,12 +18,25 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <FrameLayout
-        android:id="@+id/contentFrame"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize" />
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/main_adFragment"
+            class="com.jp.buddhisms.fragments.AdFragment"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+        <FrameLayout
+            android:id="@+id/contentFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/main_adFragment"
+            />
+    </RelativeLayout>
+
 
 
 </android.support.design.widget.CoordinatorLayout>
