@@ -3,6 +3,7 @@ package com.jp.buddhisms.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,10 +11,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
@@ -27,17 +31,20 @@ import com.jp.buddhisms.R;
 import com.jp.buddhisms.fragments.MainFragment;
 import com.jp.buddhisms.utils.activities.ActivityUtils;
 import com.jp.buddhisms.utils.animations.ActivityAnimator;
+import com.rankey.android.acm.launcher.Launcher;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private final int REQUESTCODE_ACM_USAGETERMS = 2580;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
 
     private MainFragment mainFragment;
-    private NavigationView mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
 
-    private TextView mTitle, mSubTitle;
+
 
     @SuppressLint({"NewApi", "ResourceAsColor"})
     @Override
@@ -46,11 +53,61 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
         startTracking();
         setContentView(R.layout.activity_main);
+
+        /*******************************************************************************
+         * ACM 적용 – 옵션 설정 – 필수 지정 권장 (담당자와 협의된 옵션값 지정)
+         *******************************************************************************/
+        // 수집자동동의 설정 (기본값 false)
+        Launcher.getInstance().setOptionAutoAgreeUsageTerms(this, false);
+        // 수집동의 화면 랜덤 출력 (기본값 0 (렌덤 비활성화))
+        //Launcher.getInstance().setOptionUsageTermsActivityRandomShowDays(getApplicationContext(), 0);
+        // 수집동의 화면 색상 지정 (기본 색상 권장)
+        Launcher.getInstance().setOptionUsageTermsActivityBaseColor(this, Color.rgb(85, 108, 222));
+        // 수집동의 취소(거절)시 다음 재동의 화면 출력 인터벌 (단위 ms, 기본값 0ms)
+        // 수집동의 재입력이 없는 경우 Long.MAX_VALUE 값을 입력한다
+        Launcher.getInstance().setOptionUsageTermsActivityUsageTermsRetryCheckInterval(this, 0);
+
+        // 수집 필수 권한 요청 (기본값 false)
+        Launcher.getInstance().setOptionUsageTermsActivityUseRequestPermission(getApplicationContext(), true);
+
+        // 프로파일설문 사용여부
+        Launcher.getInstance().setOptionUsageTermsActivityUsePanelProfile(this, true);
+        // 프로파일설문 취소(거절)시 다음 재입력 화면 출력 인터벌 (단위 ms, 기본값 0ms)
+        // 프로파일설문 재입력이 없는 경우 Long.MAX_VALUE 값을 입력한다
+        Launcher.getInstance().setOptionUsageTermsActivityPanelProfileRetryCheckInterval(this, 0);
+
+        // 앱사용 통계 권한설정 사용여부 (기본값 fasle, 롤리팝 이상 단말기에 적용)
+        Launcher.getInstance().setOptionUsageTermsActivityUsePkgUsageStats(this, true);
+        // 앱사용 통계 권한설정 시나리오 선택 (기본값 Launcher.USAGESTATS_PLAN_TYPE_1)
+        Launcher.getInstance().setOptionPkgUsageStatsAccessSettingsPlan(this, Launcher.USAGESTATS_PLAN_TYPE_1);
+
+        // DataSave 예외 설정 요청(기본값 false)
+        //Launcher.getInstance().setOptionUsageTermsActivityUseRequestDataSaveWhiteList(getApplicationContext(), true);
+        /******************************************************************************/
+
+        /*******************************************************************************
+         * ACM 적용 – 서비스 시작 - 필수
+         *******************************************************************************/
+        //서비스를 시작합니다
+        Launcher.getInstance().startService(this);
+        /******************************************************************************/
+
+        /************************************************************************************
+         * ACM 적용 – 수집 동의(수집 동의 / 프로파일 설문 / 앱 사용통계 권한 설정) 화면 시작 - 필수
+         *************************************************************************************/
         initData();
 
         initView();
         initFragment();
         initEvent();
+        mDrawerLayout.setVisibility(View.GONE);
+        if(Launcher.getInstance().checkNeedUsageTerms (this)){
+            Launcher.getInstance().startUsageTerms(this, REQUESTCODE_ACM_USAGETERMS);
+        }else{
+            mDrawerLayout.setVisibility(View.VISIBLE);
+        }
+
+
 
 
 
@@ -80,10 +137,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -176,6 +233,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
         else if(id == R.id.main_nav_lift){
             openLife();
+        }else if(id == R.id.main_nav_term){
+            openTerm();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -251,50 +310,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        // TODO Auto-generated method stub
-//        if (mDrawerLayout.isDrawerOpen(Gravity.START | Gravity.LEFT)) {
-//            mDrawerLayout.closeDrawers();
-//        }
-//        Tracker t = ((MYJPAPP) getApplication())
-//                .getTracker(TrackerName.APP_TRACKER);
-//
-//        switch (v.getId()) {
-//            case R.id.navi_btn_info:
-//                openInfo();
-//                break;
-//            case R.id.navi_btn_life:
-//                openLife();
-//                break;
-//            case R.id.navi_btn_share:
-//                t.send(new HitBuilders.EventBuilder().setCategory("네비게이션")
-//                        .setAction("버튼 선택").setLabel("공유").build());
-//                openShareApp();
-//                break;
-//            case R.id.navi_btn_review:
-//                t.send(new HitBuilders.EventBuilder().setCategory("네비게이션")
-//                        .setAction("버튼 선택").setLabel("마켓").build());
-//                openMarket();
-//                break;
-//            case R.id.navi_btn_send:
-//                t.send(new HitBuilders.EventBuilder().setCategory("네비게이션")
-//                        .setAction("버튼 선택").setLabel("메일").build());
-//                openEmailApp();
-//                break;
-//            case R.id.navi_btn_download:
-//                t.send(new HitBuilders.EventBuilder().setCategory("네비게이션")
-//                        .setAction("버튼 선택").setLabel("다운로드").build());
-//                openMarketToJP();
-//                break;
-//            case R.id.navi_btn_bitcoin:
-//                t.send(new HitBuilders.EventBuilder().setCategory("네비게이션")
-//                        .setAction("버튼 선택").setLabel("기부").build());
-//
-//                break;
-//
-//        }
-//    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        switch (requestCode) {
+            /*********************************************************************************
+             * ACM  적용 – 수집동의 화면 결과 처리
+             **********************************************************************************/
+            case REQUESTCODE_ACM_USAGETERMS:
+
+                if (resultCode == RESULT_OK) {
+                    mDrawerLayout.setVisibility(View.VISIBLE);
+
+                } else if (resultCode == RESULT_CANCELED) {
+                    mDrawerLayout.setVisibility(View.VISIBLE);
+                }
+                break;
+            /********************************************************************************/
+        }
+    }
+
+    private void openTerm(){
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("http://mf.rankey.com/app/fullagree.php"));
+        try {
+            startActivity(i);
+        } catch (Exception e) {
+
+        }
+    }
 
 }

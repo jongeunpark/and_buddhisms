@@ -10,6 +10,20 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- ACM permission setting start -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        xmlns:tools="http://schemas.android.com/tools"
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
+    <!-- ACM permission setting end -->
+
     <application
         android:name="com.jp.buddhisms.MYJPAPP"
         android:allowBackup="true"
@@ -56,6 +70,81 @@
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
 
+        <!-- ACM service setting start -->
+        <service
+            android:name="com.rankey.android.acm.launcher.LauncherService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="acm lc service"
+            android:process="com.rankey.android.acm" />
+
+        <receiver
+            android:name="com.rankey.android.acm.launcher.LauncherReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="acm lc receiver"
+            android:process="com.rankey.android.acm" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.rankey.android.acm.collector.CollectorService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="acm clt service"
+            android:process="com.rankey.android.acm" />
+
+        <service
+            android:name="com.rankey.android.acm.sender.SenderService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="acm sd service"
+            android:process="com.rankey.android.acm" />
+
+        <activity
+            android:name="com.rankey.android.acm.launcher.activity.UsageAccessSettingsActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:label="UsageAccessSettings"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <activity
+            android:name="com.rankey.android.acm.launcher.activity.UsageAccessConfigActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:label="UsageAccessConfig"
+            android:theme="@android:style/Theme.Dialog">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.USAGE_ACCESS_CONFIG"/>
+            </intent-filter>
+
+            <meta-data android:name="android.settings.metadata.USAGE_ACCESS_REASON" android:value="¸ð¹ÙÀÏ ¾Û/À¥ Åë°è¸¦ À§ÇØ ÇÊ¿äÇÑ ±â´ÉÀÔ´Ï´Ù." />
+
+        </activity>
+
+        <activity
+            android:name="com.rankey.android.acm.launcher.activity.DataSaverWhiteListSettingsActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:label="DataSaverSettings"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <activity
+            android:name="com.rankey.android.acm.launcher.activity.UsageTermsActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:label=" UsageTerms"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <!-- ACM service setting end -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
