@@ -114,21 +114,21 @@
             android:label="UsageAccessSettings"
             android:theme="@android:style/Theme.Dialog" />
 
-        <activity
-            android:name="com.rankey.android.acm.launcher.activity.UsageAccessConfigActivity"
-            android:enabled="true"
-            android:exported="false"
-            android:label="UsageAccessConfig"
-            android:theme="@android:style/Theme.Dialog">
+        <!--<activity-->
+            <!--android:name="com.rankey.android.acm.launcher.activity.UsageAccessConfigActivity"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false"-->
+            <!--android:label="UsageAccessConfig"-->
+            <!--android:theme="@android:style/Theme.Dialog">-->
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.USAGE_ACCESS_CONFIG"/>
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.USAGE_ACCESS_CONFIG"/>-->
+            <!--</intent-filter>-->
 
-            <meta-data android:name="android.settings.metadata.USAGE_ACCESS_REASON" android:value="¸ð¹ÙÀÏ ¾Û/À¥ Åë°è¸¦ À§ÇØ ÇÊ¿äÇÑ ±â´ÉÀÔ´Ï´Ù." />
+            <!--<meta-data android:name="android.settings.metadata.USAGE_ACCESS_REASON" android:value="모바일 앱/웹 통계를 위해 필요한 기능입니다." />-->
 
-        </activity>
+        <!--</activity>-->
 
         <activity
             android:name="com.rankey.android.acm.launcher.activity.DataSaverWhiteListSettingsActivity"
