@@ -39,6 +39,10 @@
 
             android:theme="@style/AppTheme.NoActionBar">
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
+
+        </activity>
+        <activity android:screenOrientation="portrait"
+            android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
